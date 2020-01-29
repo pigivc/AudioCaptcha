@@ -12,6 +12,10 @@ bootstrap
 <li>
 SessionState must be enabled (default is)
 </li>
+      <li>
+Copying 'libmp3lame.32.dll' and 'libmp3lame.32.dll' in bin project
+            (included in nuget package)
+</li>
 </ul>
 
 <h2>
@@ -21,21 +25,18 @@ Instructions:
 <ul>
 <li>
 Add a reference to 'Pigi.Captcha.dll' to your project.
+      or install using nuget package manager :
+      <pre>Install-Package Pigi.Captcha.Mvc</pre>
 </li>
 <li>
-Register two httphandlers by adding these two lines to your webconfig at 'system.webserver' section:
+      add <pre>using Pigi.Captcha</pre> namespace to top of global.asax.cs
+Add Captcha httphandlers to route table by calling this method.
 <pre>
-<handlers>
-&lt;handlers&gt;
-      &lt;add name="captcha" path="captcha.ashx" type="Pigi.Captcha.captcha,Pigi.Captcha" verb="*" preCondition="integratedMode"/&gt;
-      &lt;add name="sayit" path="sayit.ashx" type="Pigi.Captcha.sayit,Pigi.Captcha" verb="*" preCondition="integratedMode"/&gt;
-    &lt;/handlers&gt;
+RouteTable.Routes.AddPigiCaptchaHandlers();
     </pre>
+      <b>***Note***</b> call to this method should be before calling to <pre>RouteConfig.RegisterRoutes(RouteTable.Routes);</pre>
 </li>
-<li>
-Also register routing ignore by adding this line to your 'routeConfig' file
-<pre>routes.Ignore("{*legecy}", new { legecy = @".*\.(aspx|ashx|asmx|axd|svc)([/\?].*)?" });</pre>
-</li>
+
 <li>
 Make sure that you added packages 'NAudio' and 'NAudio.Lame' to your project and see if these two dlls are included in bin folder :
 'libmp3lame.64.dll'
