@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Routing;
 using System.Web.SessionState;
 
 namespace Pigi.Captcha
@@ -11,8 +12,12 @@ namespace Pigi.Captcha
     /// <summary>
     /// Summary description for sayit
     /// </summary>
-    public class sayit : HttpTaskAsyncHandler, IRequiresSessionState
+    public class sayit : HttpTaskAsyncHandler, IRequiresSessionState,IRouteHandler
     {
+        public IHttpHandler GetHttpHandler(RequestContext requestContext)
+        {
+            return this;
+        }
 
         public override async Task ProcessRequestAsync(HttpContext context)
         {

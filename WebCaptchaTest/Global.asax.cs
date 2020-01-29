@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Pigi.Captcha;
 
 namespace WebCaptchaTest
 {
@@ -15,6 +16,8 @@ namespace WebCaptchaTest
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteTable.Routes.AddPigiCaptchaHandlers();
+
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             //RegisterBinPath();

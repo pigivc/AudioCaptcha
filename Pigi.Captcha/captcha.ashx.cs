@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using System.Web.Routing;
 using System.Web.SessionState;
 
 namespace Pigi.Captcha
@@ -6,7 +7,7 @@ namespace Pigi.Captcha
     /// <summary>
     /// Summary description for captcha
     /// </summary>
-    public class captcha : IHttpHandler, IRequiresSessionState
+    public class captcha : IHttpHandler, IRequiresSessionState,IRouteHandler
     {
 
         public void ProcessRequest(HttpContext context)
@@ -16,6 +17,11 @@ namespace Pigi.Captcha
             bmCaptcha.Save(context.Response.OutputStream, System.Drawing.Imaging.ImageFormat.Png);
             context.Response.ContentType = "image/png";
             //context.Response.Write("Hello World");
+        }
+
+        public IHttpHandler GetHttpHandler(RequestContext requestContext)
+        {
+            return this;
         }
 
         public bool IsReusable

@@ -12,7 +12,7 @@ namespace WebCaptchaTest
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.Ignore("{*legecy}", new { legecy = @".*\.(aspx|ashx|asmx|axd|svc)([/\?].*)?" });
+            //routes.Ignore("{*legecy}", new { legecy = @".*\.(aspx|ashx|asmx|axd|svc)([/\?].*)?" });
 
             routes.MapRoute(
                 name: "Default",
