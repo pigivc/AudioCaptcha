@@ -51,5 +51,20 @@ Add this helper method to generate Audio Captcha.
 <pre>@Html.Captcha(new CaptchaSettings { Id = "c1" })</pre>
 you can also customize more by setting 'CaptchaSettings' object properties, like image size, captcha style, enabling captcha user input...
 </li>
+
+
+<li>
+      And then verify captcha in an action like this
+      <pre>
+[HttpPost]
+        public ActionResult Index(string c1)
+        {
+            var isCaptcha1Valid = CaptchaManager.ValidateCurrentCaptcha("c1", c1);
+
+            ViewBag.c1 = isCaptcha1Valid;
+            return View();
+        }
+</pre>
+</li>
 </ul>
 <img src='https://github.com/pigivc/Pigi.Captcha/blob/master/Images/pigi.captcha.png' />
